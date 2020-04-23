@@ -15,7 +15,24 @@ def PDFRead(filepath):
     pdfFileObj.close() 
     return(file)
 
-text1 = PDFRead("FILE_PATH")
+def DOCRead(filepath):
+    document = Document(filepath)
+    file=""
+    for para in document.paragraphs:
+        file=file+para.text
+    
+    return(file)
+
+
+text1 = "YOUR_FILE_PATH"
+
+if text1[-3]+text1[-2]+text1[-1]=="pdf" :
+    text=PDFRead(text1)
+
+if text1[-4]+text1[-3]+text1[-2]+text1[-1]=="docx" :
+    text=DOCRead(text1)
+    
+
 print(text)
 model = Summarizer('distilbert-base-uncased')
 summary = model(text)
